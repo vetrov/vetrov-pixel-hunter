@@ -1,16 +1,14 @@
+import intro from './pages/intro';
+import greeting from './pages/greeting';
+import rules from './pages/rules';
+import game_1 from './pages/game-1';
+import game_2 from './pages/game-2';
+import game_3 from './pages/game-3';
+import stats from './pages/stats';
+
 {
-
-  const loadTemplate = (templateName) => {
-    const node = document.createElement('span');
-    const template = document.getElementById(templateName);
-    const content = template.content ? template.content : template;
-    node.appendChild(content);
-    return node.cloneNode(true);
-  };
-
-
   // Rules
-  const rulesElement = loadTemplate('rules');
+  const rulesElement = rules;
   const rulesSubmit = rulesElement.querySelector('.rules__button');
 
   rulesElement.querySelector('.rules__input').oninput = (e) => {
@@ -22,24 +20,24 @@
   };
 
   // Slides changer
-
   const mainElement = document.getElementById('main');
 
   const switcher = document.createElement('div');
-  switcher.innerHTML = '' +
-    '<span class="prev"><img src="img/arrow_left.svg" alt="Left" width="50" height="50"></span>   ' +
-    '<span class="next"><img src="img/arrow_right.svg" alt="Right" width="50" height="50"></span>';
+  switcher.innerHTML = `
+    <span class="prev"><img src="img/arrow_left.svg" alt="Left" width="50" height="50"></span>
+    <span class="next"><img src="img/arrow_right.svg" alt="Right" width="50" height="50"></span>
+  `;
   switcher.style.cssText = 'text-align: center';
   mainElement.after(switcher);
 
   const slides = [
-    loadTemplate('intro'),
-    loadTemplate('greeting'),
+    intro,
+    greeting,
     rulesElement,
-    loadTemplate('game-1'),
-    loadTemplate('game-2'),
-    loadTemplate('game-3'),
-    loadTemplate('stats')
+    game_1,
+    game_2,
+    game_3,
+    stats
   ];
   let current = -1;
 
