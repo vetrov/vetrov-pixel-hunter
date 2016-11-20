@@ -1,6 +1,7 @@
-import {getElementFromTemplate} from '../template'
+import render from '../render';
+import game1 from './game1';
 
-export default getElementFromTemplate(`
+const template = `
   <header class="header">
     <div class="header__back">
       <span class="back">
@@ -24,4 +25,24 @@ export default getElementFromTemplate(`
       <input class="rules__input" type="text" placeholder="Ваше Имя">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
-  </div>`);
+  </div>
+`;
+
+export default () => {
+  const element = render(template);
+  const rulesSubmit = element.querySelector('.rules__button');
+
+  // empty input check
+  element.querySelector('.rules__input').oninput = (e) => {
+    if (e.target.value) {
+      rulesSubmit.removeAttribute('disabled');
+    } else {
+      rulesSubmit.setAttribute('disabled', '');
+    }
+  };
+
+  rulesSubmit.onclick = (e) => {
+    e.preventDefault();
+    game1();
+  };
+};

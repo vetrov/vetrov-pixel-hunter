@@ -1,6 +1,7 @@
-import {getElementFromTemplate} from '../template'
+import render from '../render';
+import stats from './stats';
 
-export default getElementFromTemplate(`
+const template = `
   <header class="header">
     <div class="header__back">
       <span class="back">
@@ -42,4 +43,12 @@ export default getElementFromTemplate(`
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>`);
+  </div>
+`;
+
+export default () => {
+  const element = render(template);
+  element.querySelectorAll('.game__option').forEach((el) => {
+    el.onclick = stats;
+  });
+};

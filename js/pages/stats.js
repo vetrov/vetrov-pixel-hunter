@@ -1,6 +1,6 @@
-import {getElementFromTemplate} from '../template'
+import render from '../render';
 
-export default getElementFromTemplate(`
+const template = `
   <header class="header">
     <div class="header__back">
       <span class="back">
@@ -108,4 +108,9 @@ export default getElementFromTemplate(`
         <td colspan="5" class="result__total  result__total--final">950</td>
       </tr>
     </table>
-  </div>`);
+  </div>
+`;
+
+export default () => {
+  render(template);
+};
